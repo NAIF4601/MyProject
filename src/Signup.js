@@ -21,8 +21,13 @@ function Signup() {
       return;
     }
 
+     // Save user data to Local Storage
+     const userData = { email, password };
+     localStorage.setItem('userData', JSON.stringify(userData));
+
     // For demonstration purposes
     alert('Signup successful!');
+    
     console.log('Email:', email);
     console.log('Password:', password);
   };

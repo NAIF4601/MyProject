@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // Initialize navigate hook
+
 
   // Handle form submission
   const handleSubmit = (e) => {
@@ -15,11 +18,14 @@ function Login() {
       alert('Please fill in both fields.');
       return;
     }
-
-    // For demonstration purposes
-    alert('Login successful!');
-    console.log('Email:', email);
-    console.log('Password:', password);
+    const storedUserData = JSON.parse(localStorage.getItem('userData'));
+    // Check if stored data exists and matches the entered credentials
+    if (storedUserData && storedUserData.email === email && storedUserData.password === password) {
+      alert('Login successful!');
+      navigate('/'); // Redirect to home page
+    } else {
+      alert('Invalid email or password.');
+    }
   };
 
   return (
