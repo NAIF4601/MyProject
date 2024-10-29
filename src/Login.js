@@ -23,8 +23,12 @@ function Login() {
     if (storedUserData && storedUserData.email === email && storedUserData.password === password) {
       alert('Login successful!');
       navigate('/'); // Redirect to home page
+
+      localStorage.setItem('isUserLogin', JSON.stringify(true));
+
     } else {
       alert('Invalid email or password.');
+      localStorage.setItem('isUserLogin', JSON.stringify(false));
     }
   };
 
